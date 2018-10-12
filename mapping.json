@@ -1,0 +1,23 @@
+{
+    "css": "opt/bootstrap.css",
+    "underscore": "underscore.js",
+    "jquery": "jquery.min.js",
+    "ace": "opt/ace/ace.js",
+    "bootstrap": "opt/bootstrap.css",
+    "json-schema-validator": "opt/jsv.js",
+    "bootsrap-dropdowns": "opt/bootstrap-dropdown.js",
+    "jquery-ui-sortable": [
+        "opt/jquery.ui.core.js",
+        "opt/jquery.ui.widget.js",
+        "opt/jquery.ui.mouse.js",
+        "opt/jquery.ui.sortable.js"
+    ],
+    "wysihtml5": [
+        "opt/bootstrap-wysihtml5.css",
+        "opt/bootstrap-wysihtml5.js"
+    ],
+    "spectrum": [
+        "opt/spectrum.css",
+        "opt/spectrum.js"
+    ]
+}

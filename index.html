@@ -1,0 +1,75 @@
+<html>
+    <head>
+        <style>
+            input, div{
+                margin: 5px;
+            }
+        </style>
+        <script src="./dist/bundle.js"></script>
+        <script>
+
+            window.addEventListener('load', onload)
+
+            function onload(){
+                const keys = JsonFormLoader.getKeys()
+                document.getElementById('key-candidates').textContent = keys.join(' ')
+                JsonFormLoader.setOptions({
+                    depsUrl: './lib/jsonform/deps/',
+                    jsonFormUrl: './lib/jsonform/lib/jsonform.js'
+                })
+            }
+
+            function update(){
+                document.getElementById('form-wrapper').innerHTML = ''
+                document.getElementById('form-wrapper').appendChild(document.createElement('form'))
+                const valuesStr = document.getElementById('key-input').value
+                const values = valuesStr.split(' ')
+                JsonFormLoader.load(values).then(execute)
+            }
+
+            function execute(){
+                $('form').jsonForm({
+                    schema: {
+                    name: {
+                        type: 'string',
+                        title: 'Name',
+                        required: true
+                    },
+                    age: {
+                        type: 'number',
+                        title: 'Age'
+                    }
+                    },
+                    onSubmit: function (errors, values) {
+                    if (errors) {
+                        $('#res').html('<p>I beg your pardon?</p>');
+                    }
+                    else {
+                        $('#res').html('<p>Hello ' + values.name + '.' +
+                        (values.age ? '<br/>You are ' + values.age + '.' : '') +
+                        '</p>');
+                    }
+                    }
+                });
+            }
+        </script>
+    </head>
+    <body>
+        <div>
+            <div>
+                Defaults(Do not need to be added. If added, ignored.): css underscore jquery<br>
+                Inputs separated by spaces below.
+            </div>
+            <div id="key-candidates">
+                <!-- KEY INPUT CANDIDATES ADDED HERE -->
+            </div>
+            <div>
+                <input id="key-input" value="css underscore jquery">
+            </div>
+            <input type="button" value="Update" onclick="update()">
+        </div>
+        <div id="form-wrapper">
+            <form></form>
+        </div>
+    </body>
+</html>
