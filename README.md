@@ -1,6 +1,6 @@
 # Description
 
-Loader for JSON Form: https://github.com/jsonform/jsonform  
+[https://github.com/jsonform/jsonform](Loader for JSON Form)
 Loads dependencies by array of keys.  
 Followng are always loaded because required: css, jquery, underscore  
 Check ./index.html for a simple demo.
@@ -15,7 +15,7 @@ Install dependencies: `npm install`
 Script is in ./dist/bundle.js  
 To build use `npm run build`.
 
-```
+```javascript
 // Sets options(mainly urls if using setting non-standard format.)
 JsonFormSchema.setOptions({
     depsUrl: '...',//deps directory url

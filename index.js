@@ -9,6 +9,10 @@ const dependencies = require('./mapping.json')
 let depsUrl = './lib/jsonform/deps/'
 let jsonFormUrl = './lib/jsonform.js'
 
+/**
+ * @param {array} keys
+ * @return {Promise}
+ */
 function load (keys = []) {
   const requiredUrls = createDependencyList(DEFAULTS)
   return loadDependencies(requiredUrls)
@@ -22,10 +26,17 @@ function load (keys = []) {
     })
 }
 
+/**
+ * @return {array}
+ */
 function getKeys () {
   return Object.keys(dependencies)
 }
 
+/**
+ * @param {object} options
+ * @return {object}
+ */
 function setOptions (options = {}) {
   if (options.depsUrl) {
     depsUrl = options.depsUrl
@@ -39,6 +50,11 @@ function setOptions (options = {}) {
   }
 }
 
+/**
+ * @param {array} rawKeys
+ * @param {array} disallowed
+ * @return {array}
+ */
 function createDependencyList (rawKeys = [], disallowed = []) {
   // Remove disallowed
   const keys = []
@@ -74,11 +90,17 @@ function createDependencyList (rawKeys = [], disallowed = []) {
 
 /**
  * Loads dependencies(css and js) in order.
+ * @param {array} urls
+ * @return {Promise}
  */
 function loadDependencies (urls = []) {
   return loadDependencyUrls(urls, {ordered: true})
 }
 
+/**
+ * @param {array} arr
+ * @return {array}
+ */
 function uniqueArray (arr) {
   return [...new window.Set(arr)]
 }
