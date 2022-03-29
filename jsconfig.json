@@ -1,0 +1,11 @@
+{
+    "exclude": ["node_modules"],
+    "include": ["index.js"],
+    "compilerOptions": {
+        "allowJs": true,
+        "checkJs": true,
+        "strict": true,
+        "resolveJsonModule": true,
+        "downlevelIteration": true
+    }
+}

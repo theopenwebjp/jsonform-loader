@@ -2,40 +2,44 @@
 Loads dependencies based on desired group of function.
 */
 
+/**
+ * @typedef {(string)|(string[])} Dependency
+ * @typedef {Record<string, Dependency>} DependencyMap { packageName1: filePath, packageName2: [filePath1, filePathn, ... ] }
+ */
+
 const DEFAULTS = ['css', 'jquery', 'underscore']
-const {loadDependencyUrls} = require('js-functions').Utility
+const { loadDependencyUrls } = require('js-functions').Utility
+
+/**
+ * @type {DependencyMap}
+ */
 const dependencies = require('./mapping.json')
 
 let depsUrl = './lib/jsonform/deps/'
 let jsonFormUrl = './lib/jsonform.js'
 
 /**
- * @param {array} keys
- * @return {Promise}
+ * @param {string[]} keys
  */
 function load (keys = []) {
   const requiredUrls = createDependencyList(DEFAULTS)
   return loadDependencies(requiredUrls)
-    .then(_ => {
-      console.log(window.$, window._)
+    .then(() => {
+      // console.log(window.$, window._)
       const optionalUrls = createDependencyList(keys, DEFAULTS)
       return loadDependencies(optionalUrls)
     })
-    .then(_ => {
+    .then(() => {
       return loadDependencies([jsonFormUrl])
     })
 }
 
-/**
- * @return {array}
- */
 function getKeys () {
   return Object.keys(dependencies)
 }
 
 /**
- * @param {object} options
- * @return {object}
+ * @param {{ depsUrl?: string, jsonFormUrl?: string }} options
  */
 function setOptions (options = {}) {
   if (options.depsUrl) {
@@ -51,12 +55,14 @@ function setOptions (options = {}) {
 }
 
 /**
- * @param {array} rawKeys
- * @param {array} disallowed
- * @return {array}
+ * @param {string[]} rawKeys
+ * @param {string[]} disallowed
  */
 function createDependencyList (rawKeys = [], disallowed = []) {
   // Remove disallowed
+  /**
+   * @type {string[]}
+   */
   const keys = []
   rawKeys.forEach((key, index) => {
     if (disallowed.indexOf(key) < 0) {
@@ -65,6 +71,9 @@ function createDependencyList (rawKeys = [], disallowed = []) {
   })
   console.log('createDependencyList', rawKeys, keys, disallowed)
 
+  /**
+   * @type {string[]}
+   */
   let usedDependencies = []
   keys.forEach((key) => {
     let val = dependencies[key]
@@ -90,16 +99,14 @@ function createDependencyList (rawKeys = [], disallowed = []) {
 
 /**
  * Loads dependencies(css and js) in order.
- * @param {array} urls
- * @return {Promise}
+ * @param {string[]} urls
  */
 function loadDependencies (urls = []) {
   return loadDependencyUrls(urls, {ordered: true})
 }
 
 /**
- * @param {array} arr
- * @return {array}
+ * @param {any[]} arr
  */
 function uniqueArray (arr) {
   return [...new window.Set(arr)]
@@ -115,5 +122,6 @@ if (typeof module === 'object') {
   module.exports = loader
 }
 if (typeof window === 'object') {
-  window.JsonFormLoader = loader
+  const w = /** @type {Window & { JsonFormLoader?: typeof loader }}  */ (window)
+  w.JsonFormLoader = loader
 }

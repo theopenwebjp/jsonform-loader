@@ -1,5 +1,8 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
     <head>
+        <meta charset="utf-8">
+        <title>JSON Form Loader</title>
         <style>
             input, div{
                 margin: 5px;
@@ -13,12 +16,14 @@
             function onload(){
                 const keys = JsonFormLoader.getKeys()
                 document.getElementById('key-candidates').textContent = keys.join(' ')
-                JsonFormLoader.setOptions({
-                    depsUrl: '../lib/jsonform/deps/',
-                    jsonFormUrl: '../lib/jsonform/lib/jsonform.js'
-                })
+                // const BASE = `../lib/jsonform` // libの場合
+                const BASE = `../node_modules/jsonform` // node_modulesの場合
+                const options = {
+                    depsUrl: `${BASE}/deps/`, // deps directory url
+                    jsonFormUrl: `${BASE}/lib/jsonform.js` // jsonform.js url
+                }
+                JsonFormLoader.setOptions(options)
             }
-
             function update(){
                 document.getElementById('form-wrapper').innerHTML = ''
                 document.getElementById('form-wrapper').appendChild(document.createElement('form'))
@@ -55,21 +60,26 @@
         </script>
     </head>
     <body>
-        <div>
+        <header>
+            <h1 style="width: 100%; text-align: center;">JSON Form Loader</h1>
+        </header>
+        <main>
             <div>
-                Defaults(Do not need to be added. If added, ignored.): css underscore jquery<br>
-                Inputs separated by spaces below.
+                <div>
+                    Defaults(Do not need to be added. If added, ignored.): css underscore jquery<br>
+                    Inputs separated by spaces below.
+                </div>
+                <div id="key-candidates">
+                    <!-- KEY INPUT CANDIDATES ADDED HERE -->
+                </div>
+                <div>
+                    <input id="key-input" value="css underscore jquery">
+                </div>
+                <input type="button" value="Update" onclick="update()">
             </div>
-            <div id="key-candidates">
-                <!-- KEY INPUT CANDIDATES ADDED HERE -->
+            <div id="form-wrapper">
+                <form></form>
             </div>
-            <div>
-                <input id="key-input" value="css underscore jquery">
-            </div>
-            <input type="button" value="Update" onclick="update()">
-        </div>
-        <div id="form-wrapper">
-            <form></form>
-        </div>
+        </main>
     </body>
 </html>

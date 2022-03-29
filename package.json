@@ -9,7 +9,8 @@
   "author": "Damien Golding",
   "license": "MIT",
   "dependencies": {
-    "js-functions": "git+https://github.com/goldingdamien/js-functions.git"
+    "js-functions": "git+https://github.com/goldingdamien/js-functions.git",
+    "jsonform": "^2.2.5"
   },
   "devDependencies": {
     "browserify": "^16.2.3"
