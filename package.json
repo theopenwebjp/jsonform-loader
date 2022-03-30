@@ -1,12 +1,25 @@
 {
-  "name": "loader",
+  "name": "@theopenweb/jsonform-loader",
   "version": "1.0.0",
   "description": "Loader for jsonform",
   "main": "index.js",
   "scripts": {
     "build": "browserify index.js -o ./dist/bundle.js"
   },
-  "author": "Damien Golding",
+  "keywords": ["jsonform", "loader", "dependencies"],
+  "repository": {
+      "type": "git",
+      "url": "git+https://github.com/theopenwebjp/jsonform-loader.git"
+  },
+  "author": "The Open Web <noreply@theopenweb.jp> (https://theopenweb.jp)",
+  "contributors": [
+      "Damien Golding <noreply@damiengolding.com> (https://damiengolding.com)"
+  ],
+  "homepage": "https://theopenweb.info",
+  "bugs": {
+      "url": "https://github.com/theopenwebjp/jsonform-loader/issues"
+  },
+  "private": false,
   "license": "MIT",
   "dependencies": {
     "js-functions": "git+https://github.com/goldingdamien/js-functions.git",

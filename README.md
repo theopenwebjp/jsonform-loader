@@ -16,6 +16,10 @@ Although there is an npm module([jsonform](https://www.npmjs.com/package/jsonfor
 
 ## Usage
 
+```bash
+npm install @theopenweb/jsonform-loader
+```
+
 Install dependencies: `npm install`
 
 Place jsonform into lib directory. Default settings work when jsonform is cloned into lib.
@@ -40,12 +44,12 @@ console.log('available keys', keys)
 
 // Load without any optional dependencies.
 JsonFormSchema.load().then(()=>{
-    //CAN USE JsonForm here
+    // CAN USE JsonForm here
 })
 
 // Load with optional dependencies.
 JsonFormSchema.load(keys).then(()=>{
-    //CAN USE JsonForm with dependencies in keys loaded
+    // CAN USE JsonForm with dependencies in keys loaded
 })
 ```
 
