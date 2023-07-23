@@ -1,6 +1,7 @@
 # Description
 
-[https://github.com/jsonform/jsonform](Loader for JSON Form)
+- [Loader for JSON Form](https://github.com/jsonform/jsonform)
+
 Loads dependencies by array of keys.  
 Followng are always loaded because required: css, jquery, underscore  
 Check ./index.html for a simple demo.
